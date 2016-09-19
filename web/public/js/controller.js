@@ -16,21 +16,21 @@ App.controller('ReadCtrl', function($scope, Lembretes, $route){
 		Lembretes.delete(id).then(function(data){
 			console.log(data);
 			$route.reload();
-		});	
+		});
 	}
-});	
+});
 
 App.controller('CreateCtrl', function($scope, Lembretes, $location){
 	$scope.cadastrar = function(titulo){
 		var data = {
-			titulo: titulo
+			title: titulo
 		};
 
 		Lembretes.create(data).then(function(data){
 			$location.path('/');
 		});
 	}
-});	
+});
 
 App.controller('EditCtrl', function($scope, Lembretes, $routeParams, $location){
 	var id = $routeParams.id;
@@ -44,4 +44,4 @@ App.controller('EditCtrl', function($scope, Lembretes, $routeParams, $location){
 			$location.path('/');
 		});
 	}
-});	
+});

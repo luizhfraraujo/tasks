@@ -7,7 +7,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var swig = require('swig');
 var index = require('./routes/index');
-var connection  = require('express-myconnection'); 
+var connection  = require('express-myconnection');
 var mysql = require('mysql');
 var app = express();
 var cors = require('cors');
@@ -38,11 +38,11 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(
     connection(mysql,{
-        host: 'localhost',
-        user: 'root',
-        password : '123456',
+        host: 'STRAWBERRY.arvixe.com',
+        user: 'tasks',
+        password : 'tasks',
         port : 3306, //port mysql
-        database:'api'
+        database:'tasks'
     },'request')
 );
 
