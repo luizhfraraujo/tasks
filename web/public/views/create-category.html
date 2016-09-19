@@ -1,0 +1,15 @@
+<div class="row">
+	<h2>Cadastro de Categoria</h2>
+</div>
+<div class="row">
+<form class="form-horizontal" ng-submit="cadastrar(category)">
+	<div class="form-group">
+		<input type="text" ng-model="category.title" class="form-control" placeholder="Título">
+		<input type="text" ng-model="category.icon" class="form-control" placeholder="Ícone">
+	</div>
+	<div class="form-group">
+		<button class="btn btn-success">Cadastrar</button>
+		<a href="#/categories" class="btn btn-warning">Cancelar</a>
+	</div>
+</form>
+</div>

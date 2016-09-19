@@ -5,7 +5,7 @@
 </div>
 
 <div class="row" ng-hide="loading">
-    <a href="#/create" class="btn btn-primary">Cadastrar</a>
+    <a href="#/task/create" class="btn btn-primary">Cadastrar</a>
 </div>
 <br/>
 <div class="row" ng-hide="loading">
@@ -29,10 +29,10 @@
             </div>
         </td>
 		<td>
-			{{item.created_at}}
+			{{item.created_at | date:"dd/MM/yyyy 'às' HH:mm:ss"}}
 		</td>
 		<td>
-            <a href="#/edit/{{item.id}}" class="btn btn-info btn-block">
+            <a href="#/task/edit/{{item.id}}" class="btn btn-info btn-block">
                 <i data-toggle="tooltip" title="Editar tarefa" class="fa fa-pencil" aria-hidden="true"></i>
             </a>
         </td>

@@ -1,7 +1,7 @@
 var App = angular.module('services', []);
 
-App.factory('Lembretes', function($http, API){
-	var lembretes = [{titulo: 'Ola'},{titulo: 'Ola Hello'}];
+App.factory('Tasks', function($http, API){
+	
 	return {
 		read: function(){
 			return $http.get(API+'tasks');
@@ -19,4 +19,24 @@ App.factory('Lembretes', function($http, API){
 			return $http.delete(API+'tasks/'+id);
 		}
 	}
-})
+});
+
+App.factory('Categories', function($http, API){
+	return {
+		read: function(){
+			return $http.get(API+'categories');
+		},
+		create: function(item){
+			return $http.post(API+'categories', item);
+		},
+		profile: function(id){
+			return $http.get(API+'categories/'+id);
+		},
+		update: function(item, id){
+			return $http.put(API+'categories/'+id, item);
+		},
+		delete: function(id){
+			return $http.delete(API+'categories/'+id);
+		}
+	}
+});

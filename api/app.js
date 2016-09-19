@@ -8,6 +8,7 @@ var bodyParser = require('body-parser');
 var swig = require('swig');
 var index = require('./routes/index');
 var tasks = require('./routes/tasks');
+var categories = require('./routes/categories');
 var connection  = require('express-myconnection');
 var mysql = require('mysql');
 var app = express();
@@ -49,6 +50,7 @@ app.use(
 
 app.use('/', index);
 app.use('/api/tasks', tasks);
+app.use('/api/categories', categories);
 
 app.use(function(req, res, next) {
     req.app = app;

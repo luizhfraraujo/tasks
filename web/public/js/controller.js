@@ -1,10 +1,10 @@
 var App = angular.module('controllers', []);
 
-App.controller('ReadCtrl', function($scope, Lembretes, $route){
+App.controller('ReadTasksCtrl', function($scope, Tasks, $route){
 	$scope.loading = true;
 	$scope.lembretes = [];
 	$scope.notFound = false;
-	Lembretes.read().then(function(data){
+	Tasks.read().then(function(data){
 		$scope.lembretes = data.data;
 		if(data.data.length == 0){
 			$scope.notFound = true;
@@ -35,37 +35,71 @@ App.controller('ReadCtrl', function($scope, Lembretes, $route){
 	}
 });
 
-App.controller('CreateCtrl', function($scope, Lembretes, $location){
+App.controller('CreateTaskCtrl', function($scope, Tasks, $location){
 	$scope.cadastrar = function(titulo){
 		var data = {
 			title: titulo,
 			complete: 0
 		};
 
-		Lembretes.create(data).then(function(data){
+		Tasks.create(data).then(function(data){
 			$location.path('/');
 		});
 	}
 });
 
-App.controller('EditCtrl', function($scope, Lembretes, $routeParams, $location){
+App.controller('EditTaskCtrl', function($scope, Tasks, $routeParams, $location){
 	var id = $routeParams.id;
-	Lembretes.profile(id).then(function(data){
+	Tasks.profile(id).then(function(data){
 		$scope.item = data.data;
 	})
 
 	$scope.atualizar = function(item){
 		console.log(item);
-		Lembretes.update(item, item.id).then(function(data){
+		Tasks.update(item, item.id).then(function(data){
 			$location.path('/');
 		});
 	}
 });
 
-
-App.controller('ShowTaskCtrl', function($scope, Lembretes, $routeParams, $location){
+App.controller('ReadTaskCtrl', function($scope, Tasks, $routeParams, $location){
 	var id = $routeParams.id;
-	Lembretes.profile(id).then(function(data){
+	Tasks.profile(id).then(function(data){
 		$scope.item = data.data;
 	})
+});
+
+App.controller('ReadCategoriesCtrl', function($scope, Categories, $route){
+	$scope.loading = true;
+	$scope.lembretes = [];
+	$scope.notFound = false;
+	Tasks.read().then(function(data){
+		$scope.lembretes = data.data;
+		if(data.data.length == 0){
+			$scope.notFound = true;
+		}
+		$scope.loading = false;
+	},function(data){
+		console.log("data", data);
+	});
+
+	$scope.deletar = function(id){
+		Lembretes.delete(id).then(function(data){
+			console.log(data);
+			$route.reload();
+		});
+	}
+
+	$scope.completed = function(item){
+		item.complete = 1;
+		Lembretes.update(item, item.id).then(function(data){
+			//$route.reload();
+		});
+	}
+	$scope.uncompleted = function(item){
+		item.complete = 0;
+		Lembretes.update(item, item.id).then(function(data){
+
+		});
+	}
 });
