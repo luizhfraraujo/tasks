@@ -1,0 +1,12 @@
+{
+  "name": "web",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "http-server public -p 3001"
+  },
+  "dependencies": {
+    "bower": "^1.7.9",
+    "http-server": "^0.9.0"
+  }
+}
