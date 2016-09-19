@@ -36,10 +36,16 @@ exports.profile = function(req, res) {
 exports.update = function(req, res) {
  	var data = req.body,
  		id 	   = req.params.id;
+		var date = new Date();
+		console.log(date)
+		data.updated_at = new Date();
 
 	req.getConnection(function(err,connection){
 		connection.query('UPDATE tasks SET ? WHERE id = ? ',[data, id],function(err,result){
-			if(err) return res.status(400).json(err);
+			if(err){
+				console.log(err);
+				return res.status(400).json(err);
+			}
 
 			return res.status(200).json(result);
 		});

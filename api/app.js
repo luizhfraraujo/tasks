@@ -7,6 +7,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var swig = require('swig');
 var index = require('./routes/index');
+var tasks = require('./routes/tasks');
 var connection  = require('express-myconnection');
 var mysql = require('mysql');
 var app = express();
@@ -31,7 +32,7 @@ swig.setDefaults({ cache: false });
 //app.use(favicon(__dirname + '/public/favicon.ico'));
 app.use(logger('dev'));
 app.use(cors());
-app.set('jwtTokenSecret', 'vibevendasehfodapracrlaee');
+app.set('jwtTokenSecret', '#task$');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
@@ -47,6 +48,7 @@ app.use(
 );
 
 app.use('/', index);
+app.use('/api/tasks', tasks);
 
 app.use(function(req, res, next) {
     req.app = app;

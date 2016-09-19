@@ -1,13 +1,15 @@
 var App = angular.module('App', [
 'ngRoute',
 'controllers',
-'services'
+'services',
+'angular-loading-bar',
+
 ]);
 
 App.config(function($routeProvider){
 	$routeProvider
 	.when('/', {
-		templateUrl: 'views/read.html',
+		templateUrl: 'views/show-tasks.html',
 		controller: 'ReadCtrl'
 	})
 
@@ -16,10 +18,15 @@ App.config(function($routeProvider){
 		controller: 'CreateCtrl'
 	})
 
+	.when('/task/:id', {
+		templateUrl: 'views/show-task.html',
+		controller: 'ShowTaskCtrl'
+	})
+
 	.when('/edit/:id', {
 		templateUrl: 'views/edit.html',
 		controller: 'EditCtrl'
 	})
 });
 
-App.value('API', 'http://localhost:3000/');
+App.value('API', 'http://localhost:3000/api/');

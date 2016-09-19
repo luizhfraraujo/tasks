@@ -1,0 +1,75 @@
+<div class="col-md-12">
+<div class="row">
+	<h2 ng-hide="loading" class="text-center"><u>Tarefas a Concluir</u></h2>
+	<h2 ng-show="loading" class="text-center"><i class='fa fa-spinner fa-spin '></i> Aguarde... </h2>
+</div>
+
+<div class="row" ng-hide="loading">
+    <a href="#/create" class="btn btn-primary">Cadastrar</a>
+</div>
+<br/>
+<div class="row" ng-hide="loading">
+<table class="table table-bordered table-striped">
+	<thead>
+		<tr>
+			<td>Título</td>
+			<td>Criado em</td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+	</thead>
+	<tbody>
+		<tr ng-repeat="item in lembretes" ng-if="item.complete === 0">
+		<td>
+            <a href="#/task/{{item.id}}">{{item.title}}
+            </a>
+            <div ng-show="item.note.length > 0">
+                <i data-toggle="tooltip" title="Esta tarefa possui observações!" class="fa fa-sticky-note-o" aria-hidden="true"></i>
+            </div>
+        </td>
+		<td>
+			{{item.created_at}}
+		</td>
+		<td>
+            <a href="#/edit/{{item.id}}" class="btn btn-info btn-block">
+                <i data-toggle="tooltip" title="Editar tarefa" class="fa fa-pencil" aria-hidden="true"></i>
+            </a>
+        </td>
+		<td><button ng-click="deletar(item.id)" class="btn btn-danger btn-block"><i data-toggle="tooltip" title="Apagar tarefa" class="fa fa-trash" aria-hidden="true"></button></td>
+
+		<td><button ng-click="completed(item)" class="btn btn-success btn-block"><i data-toggle="tooltip" title="Concluir tarefa" class="fa fa-check" aria-hidden="true"></button></td>
+		</tr>
+		<tr ng-show="notFound" class="text-center">
+			<td colspan="4">Não tem lembretes</td>
+		</tr>
+	</tbody>
+</table>
+
+</div>
+<div class="row" ng-hide="loading">
+	<h2 class="text-center"><u>Tarefas Concluídas</u></h2>
+</div>
+<div class="row" ng-hide="loading">
+<table class="table table-bordered table-striped">
+	<thead>
+		<tr>
+			<td>Título</td>
+			<td></td>
+			<td></td>
+		</tr>
+	</thead>
+	<tbody>
+		<tr ng-repeat="item in lembretes" ng-if="item.complete === 1">
+		<td><strike>{{item.title}}</strike></td>
+		<td><button ng-click="deletar(item.id)" class="btn btn-danger btn-block"><i data-toggle="tooltip" title="Apagar tarefa" class="fa fa-trash" aria-hidden="true"></button></td>
+		<td><button ng-click="uncompleted(item)" class="btn btn-warning btn-block"><i data-toggle="tooltip" title="Voltar tarefa para não concluída" class="fa fa-undo" aria-hidden="true"></button></td>
+		</tr>
+		<tr ng-show="notFound" class="text-center">
+			<td colspan="4">Não tem lembretes</td>
+		</tr>
+	</tbody>
+</table>
+
+</div>
+</div>

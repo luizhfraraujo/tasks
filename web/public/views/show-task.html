@@ -1,0 +1,16 @@
+<div class="row">
+	<h2>Exibindo Lembrete</h2>
+</div>
+<div class="row">
+	<h4>{{item.title}}</h4>
+	<br/>
+	Notas:
+	<p>{{item.note}}</p>
+	<hr>
+	<p><strong>Criado em:</strong> {{item.created_at | date:"dd/MM/yyyy 'às' HH:mm:ss"}}</p>
+	<p><strong>Atualizado em:</strong> {{item.updated_at | date:"dd/MM/yyyy 'às' HH:mm:ss"}}</p>
+</div>
+<div class="row">
+	<a href="#/" class="btn btn-info">Voltar</a>
+	<a href="#/edit/{{item.id}}" class="btn btn-info">Editar</a>
+</div>
